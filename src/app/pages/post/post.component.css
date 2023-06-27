@@ -1,0 +1,20 @@
+.post-button{
+    position: absolute;
+    left: 50%;
+     top: 30%;
+     padding: 10px;
+     transform: translate(-50%, -50%);
+     border: none;
+    background: #ea1538;
+    padding: 12px 30px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    transition: .4s;
+    text-align: center;
+  
+}
+.post-button:hover{
+    cursor: pointer;
+}
