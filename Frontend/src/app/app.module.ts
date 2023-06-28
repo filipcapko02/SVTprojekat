@@ -13,6 +13,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { CreatePostComponent } from './tools/create-post/create-post.component';
 import { MatCardModule } from '@angular/material/card';
 import { EditProfileComponent } from './tools/edit-profile/edit-profile.component';
+import { ChangepasswordComponent } from './tools/changepassword/changepassword.component';
+import { PostfeedComponent } from './pages/postfeed/postfeed.component';
 const appRoute: Routes = [];
 
 @NgModule({
@@ -23,7 +25,9 @@ const appRoute: Routes = [];
     ProfileComponent,
     PostComponent,
     CreatePostComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ChangepasswordComponent,
+    PostfeedComponent
   ],
   imports: [
     BrowserModule,

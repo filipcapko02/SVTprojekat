@@ -10,6 +10,6 @@ export class LoginComponent {
   constructor(private router: Router) {}
 
   navigirajNaLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 }

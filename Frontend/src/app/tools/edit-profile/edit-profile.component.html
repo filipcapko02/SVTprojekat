@@ -1,0 +1,15 @@
+
+
+<form>
+    <label for="username">Username:</label>
+    <input type="text" id="ime" name="ime" placeholder="Unesite ime" value="admin">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Unesite email" value="admin@gmail.com">
+
+    <button type="button" class="dugme" (click)="onProfileClick" [routerLink]="['/profile']">Save</button>
+    <button type="button" class="dugme" (click)="onChangeClick" [routerLink]="['/changepassword']">Change Password</button>
+  </form>
+
+
+  <router-outlet></router-outlet>
