@@ -16,12 +16,12 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Korisnik {
+public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long korisnikId;
+  private Long userId;
   private String username;
-  private String lozinka;
+  private String password;
   private String email;
   private Instant created;
   private boolean enabled;

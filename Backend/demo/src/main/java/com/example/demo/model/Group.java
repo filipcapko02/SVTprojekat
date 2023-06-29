@@ -18,15 +18,15 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Entity
 @Builder
-public class Grupa {
+public class Group {
   @Id
   @GeneratedValue(strategy = IDENTITY)
   private Long id;
-  private String ime;
-  private String opis;
+  private String name;
+  private String description;
   @OneToMany(fetch = LAZY)
-  private List<Post> postovi;
+  private List<Post> posts;
   private Instant createdDate;
   @ManyToOne(fetch = LAZY)
-  private Korisnik korisnik;
+  private User user;
 }

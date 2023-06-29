@@ -13,7 +13,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Komentar {
+public class Comment {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -23,6 +23,6 @@ public class Komentar {
   private Post post;
   private Instant createdDate;
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "korisnikId", referencedColumnName = "korisnikId")
-  private Korisnik korisnik;
+  @JoinColumn(name = "userId", referencedColumnName = "userId")
+  private User user;
 }

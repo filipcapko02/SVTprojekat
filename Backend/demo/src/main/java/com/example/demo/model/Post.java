@@ -16,16 +16,16 @@ public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long postId;
-  private String postIme;
+  private String postName;
   private String url;
   @Lob
-  private String opis;
+  private String description;
   private Integer voteCount = 0;
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "korisnikId", referencedColumnName = "korisnikId")
-  private Korisnik korisnik;
+  @JoinColumn(name = "userId", referencedColumnName = "userId")
+  private User user;
   private Instant createdDate;
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "id", referencedColumnName = "id")
-  private Grupa grupa;
+  private Group group;
 }

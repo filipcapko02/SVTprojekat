@@ -16,16 +16,16 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Entity
 @Builder
-public class Lajk {
+public class Like {
   @Id
   @GeneratedValue(strategy = IDENTITY)
-  private Long lajkId;
-  private LajkType lajkType;
+  private Long likeId;
+  private LikeType likeType;
   @NotNull
   @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "postId", referencedColumnName = "postId")
   private Post post;
   @ManyToOne(fetch = LAZY)
-  @JoinColumn(name = "korisnikId", referencedColumnName = "korisnikId")
-  private Korisnik korisnik;
+  @JoinColumn(name = "userId", referencedColumnName = "userId")
+  private User user;
 }
