@@ -1,38 +1,74 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.CommentsDAO;
-import com.example.demo.service.CommentService;
-import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import com.example.demo.dto.LikeDTO;
+import com.example.demo.model.LikeType;
+import com.example.demo.model.Likee;
+import com.example.demo.model.Post;
+import com.example.demo.model.User;
+import com.example.demo.security.TokenUtils;
+import com.example.demo.service.UserService;
+import com.example.demo.serviceImpl.CommentService;
+import com.example.demo.serviceImpl.LikeService;
+import com.example.demo.serviceImpl.PostServiceimpl;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.validation.annotation.Validated;
 
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.OK;
+
+import java.security.Principal;
+import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/api/comments")
-@AllArgsConstructor
+@RequestMapping("/api/comment")
+@CrossOrigin
 public class CommentController {
-    private final CommentService commentService;
-    
+    @Autowired
+    CommentService commentService;
+    @Autowired
+    PostServiceimpl postServiceimpl;
+    @Autowired
+    LikeService likeService;
 
-    @PostMapping
-    public ResponseEntity<Void> createComment(@RequestBody CommentsDAO commentsDAO) {
-        commentService.save(commentsDAO);
-        return new ResponseEntity<>(CREATED);
-    }
+    @Autowired
+    UserService userService;
 
-    @GetMapping(params = "postId")
-    public ResponseEntity<List<CommentsDAO>> getAllCommentsForPost(@RequestParam Long postId) {
-        return ResponseEntity.status(OK)
-                .body(commentService.getAllCommentsForPost(postId));
-    }
+    @Autowired
+    UserDetailsService userDetailsService;
 
-    @GetMapping(params = "userName")
-    public ResponseEntity<List<CommentsDAO>> getAllCommentsForUser(@RequestParam String userName){
-        return ResponseEntity.status(OK)
-                .body(commentService.getAllCommentsForUser(userName));
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    TokenUtils tokenUtils;
+    @Autowired
+    private ObjectMapper objectMapper;
+
+
+    @PostMapping("/addLike")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public HttpStatus user1(Principal user, @RequestBody @Validated LikeDTO dto){
+        User user1 = this.userService.findByUsername(user.getName());
+        Post p = this.postServiceimpl.getOne(dto.getId());
+        Likee r = new Likee();
+        r.setPost(p.getId());
+        r.setUser(user1.getId());
+        r.setDate(LocalDate.now());
+
+        if(dto.getType()==1){
+            r.setType(LikeType.LIKE);
+        }
+        if(dto.getType()==2){
+            r.setType(LikeType.DISLIKE);
+        }
+        likeService.save(r);
+        p.getLikes().add(r);
+        postServiceimpl.save(p);
+        return HttpStatus.CREATED;
     }
 }
