@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PasswordDTO {
-    private String NewPassword;
     private String OldPassword;
-    private String OldPassword2;
+    private String NewPassword1;
+    private String NewPassword2;
 }

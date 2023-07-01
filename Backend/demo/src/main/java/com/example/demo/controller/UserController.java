@@ -114,7 +114,7 @@ public class UserController {
         {
 
 
-            this.userService.ChangePassword(user.getName(),pass.getNewPassword());
+            this.userService.ChangePassword(user.getName(),pass.getNewPassword1());
             return HttpStatus.ACCEPTED;
         }
         else return HttpStatus.NOT_ACCEPTABLE;

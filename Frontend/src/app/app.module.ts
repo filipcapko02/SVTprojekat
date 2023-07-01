@@ -15,7 +15,16 @@ import { MatCardModule } from '@angular/material/card';
 import { EditProfileComponent } from './tools/edit-profile/edit-profile.component';
 import { ChangepasswordComponent } from './tools/changepassword/changepassword.component';
 import { PostfeedComponent } from './pages/postfeed/postfeed.component';
-const appRoute: Routes = [];
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './pages/home/home.component';
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+
+const appRoute: Routes = [
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'Home', component: HomeComponent },
+  { path: 'register', component: RegisterComponent }
+];
 
 @NgModule({
   declarations: [
@@ -27,7 +36,8 @@ const appRoute: Routes = [];
     CreatePostComponent,
     EditProfileComponent,
     ChangepasswordComponent,
-    PostfeedComponent
+    PostfeedComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +46,9 @@ const appRoute: Routes = [];
     BrowserAnimationsModule,
     MatDialogModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
