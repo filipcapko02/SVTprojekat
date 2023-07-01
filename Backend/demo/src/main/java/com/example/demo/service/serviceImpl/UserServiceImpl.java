@@ -1,4 +1,4 @@
-package com.example.demo.serviceImpl;
+package com.example.demo.service.serviceImpl;
 
 import com.example.demo.dto.UserDTO;
 import com.example.demo.model.User;
@@ -6,10 +6,12 @@ import com.example.demo.repository.UserInterface;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired

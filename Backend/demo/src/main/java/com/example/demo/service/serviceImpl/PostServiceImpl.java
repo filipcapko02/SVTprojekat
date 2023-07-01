@@ -1,4 +1,4 @@
-package com.example.demo.serviceImpl;
+package com.example.demo.service.serviceImpl;
 import com.example.demo.dto.PostDTO;
 import com.example.demo.model.LikeType;
 import com.example.demo.model.Likee;
@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 
 @Primary
-public class PostServiceimpl {
+public class PostServiceImpl {
     @Autowired
     private UserService userService;
     @Autowired

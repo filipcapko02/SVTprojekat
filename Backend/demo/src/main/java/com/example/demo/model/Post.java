@@ -11,7 +11,6 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "post")

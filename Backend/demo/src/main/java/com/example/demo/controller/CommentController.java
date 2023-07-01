@@ -7,9 +7,10 @@ import com.example.demo.model.Post;
 import com.example.demo.model.User;
 import com.example.demo.security.TokenUtils;
 import com.example.demo.service.UserService;
-import com.example.demo.serviceImpl.CommentService;
-import com.example.demo.serviceImpl.LikeService;
-import com.example.demo.serviceImpl.PostServiceimpl;
+import com.example.demo.service.serviceImpl.CommentService;
+import com.example.demo.service.serviceImpl.LikeService;
+
+import com.example.demo.service.serviceImpl.PostServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +32,7 @@ public class CommentController {
     @Autowired
     CommentService commentService;
     @Autowired
-    PostServiceimpl postServiceimpl;
+    PostServiceImpl postServiceimpl;
     @Autowired
     LikeService likeService;
 

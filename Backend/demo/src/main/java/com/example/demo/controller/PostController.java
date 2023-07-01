@@ -7,8 +7,8 @@ import com.example.demo.model.Post;
 import com.example.demo.model.User;
 import com.example.demo.security.TokenUtils;
 import com.example.demo.service.UserService;
-import com.example.demo.serviceImpl.GroupServiceImpl;
-import com.example.demo.serviceImpl.PostServiceimpl;
+import com.example.demo.service.serviceImpl.GroupServiceImpl;
+import com.example.demo.service.serviceImpl.PostServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +29,7 @@ import java.util.List;
 public class PostController  {
 
     @Autowired
-    PostServiceimpl postService;
+    PostServiceImpl postService;
     @Autowired
     UserService userService;
     @Autowired

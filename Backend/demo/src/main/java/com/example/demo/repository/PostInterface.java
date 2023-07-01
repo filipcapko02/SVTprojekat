@@ -8,9 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface PostInterface extends JpaRepository<Post, Long> {
-  List<Post> findAllByGroup(Groupp groupp);
 
-  List<Post> findByUser(User user);
 
   List<Post> findAllByUserAndDeleted(Long User,boolean Deleted);
   List<Post> findAllByDeleted(boolean Deleted);

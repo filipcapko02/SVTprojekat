@@ -9,6 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface LikeInterface extends JpaRepository<Likee, Long> {
-  Optional<Likee> findTopByPostAndUserOrderByLikeIdDesc(Post post, User currentUser);
 }
 

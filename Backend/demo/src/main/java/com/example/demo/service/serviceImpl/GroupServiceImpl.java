@@ -1,4 +1,4 @@
-package com.example.demo.serviceImpl;
+package com.example.demo.service.serviceImpl;
 
 import com.example.demo.dto.GroupDTO;
 import com.example.demo.model.Groupp;

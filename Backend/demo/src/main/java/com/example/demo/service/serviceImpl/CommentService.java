@@ -1,4 +1,4 @@
-package com.example.demo.serviceImpl;
+package com.example.demo.service.serviceImpl;
 import com.example.demo.model.Comment;
 import com.example.demo.repository.CommentInterface;
 import org.springframework.beans.factory.annotation.Autowired;
