@@ -42,15 +42,15 @@ public class GroupController  {
 
     @GetMapping("/getAll")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public List<Groupp> user1(Principal user) {
+    public List<Groupp> korisnik1(Principal user) {
         return this.groupService.findAll();
     }
     @DeleteMapping("/delete")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public HttpStatus user1(Principal user, @RequestBody @Validated  Long id) {
-        User nesto = this.userService.findByUsername(user.getName());
+        User korisnik = this.userService.findByUsername(user.getName());
 
-        if( this.groupService.getOne(id).getGroupAdmin() == nesto.getId())
+        if( this.groupService.getOne(id).getGroupAdmin() == korisnik.getId())
         {
             this.groupService.delete(id);
             return HttpStatus.ACCEPTED;
@@ -59,10 +59,10 @@ public class GroupController  {
     }
     @PostMapping("/one")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public Groupp usesr1(Principal user, @RequestBody @Validated  Long id) {
-        User pera = this.userService.findByUsername(user.getName());
+    public Groupp korisnik2(Principal user, @RequestBody @Validated  Long id) {
+        User korisnik = this.userService.findByUsername(user.getName());
 
-        if( this.groupService.getOne(id).getGroupAdmin() == pera.getId())
+        if( this.groupService.getOne(id).getGroupAdmin() == korisnik.getId())
         {
             return groupService.getOne(id);
 
@@ -71,15 +71,15 @@ public class GroupController  {
     }
     @PostMapping("/save")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public Groupp usesr1(Principal user, @RequestBody @Validated GroupReciveDTO dto) {
-        User nesto = this.userService.findByUsername(user.getName());
+    public Groupp korisnik3(Principal user, @RequestBody @Validated GroupReciveDTO dto) {
+        User korisnik = this.userService.findByUsername(user.getName());
 
-        if( this.groupService.getOne(dto.getId()).getGroupAdmin() == nesto.getId())
+        if( this.groupService.getOne(dto.getId()).getGroupAdmin() == korisnik.getId())
         {
-            Groupp nestoo =  groupService.getOne(dto.getId());
-            nestoo.setName(dto.getName());
-            nestoo.setDescription(dto.getDescription());
-            groupService.save(nestoo);
+            Groupp grupa =  groupService.getOne(dto.getId());
+            grupa.setName(dto.getName());
+            grupa.setDescription(dto.getDescription());
+            groupService.save(grupa);
 
         }
         else return null;
@@ -89,8 +89,8 @@ public class GroupController  {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public Groupp user(Principal user,@RequestBody @Validated GroupDTO dto) {
 
-        User nesto = this.userService.findByUsername(user.getName());
-        return this.groupService.createGroup(dto,nesto.getId());
+        User korisnik = this.userService.findByUsername(user.getName());
+        return this.groupService.createGroup(dto,korisnik.getId());
     }
 
 

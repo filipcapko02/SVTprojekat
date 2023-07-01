@@ -53,23 +53,23 @@ public class CommentController {
 
     @PostMapping("/addLike")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public HttpStatus user1(Principal user, @RequestBody @Validated LikeDTO dto){
-        User user1 = this.userService.findByUsername(user.getName());
-        Post p = this.postServiceimpl.getOne(dto.getId());
-        Likee r = new Likee();
-        r.setPost(p.getId());
-        r.setUser(user1.getId());
-        r.setDate(LocalDate.now());
+    public HttpStatus korisnik1(Principal user, @RequestBody @Validated LikeDTO dto){
+        User korisnik = this.userService.findByUsername(user.getName());
+        Post post = this.postServiceimpl.getOne(dto.getId());
+        Likee like = new Likee();
+        like.setPost(post.getId());
+        like.setUser(korisnik.getId());
+        like.setDate(LocalDate.now());
 
         if(dto.getType()==1){
-            r.setType(LikeType.LIKE);
+            like.setType(LikeType.LIKE);
         }
         if(dto.getType()==2){
-            r.setType(LikeType.DISLIKE);
+            like.setType(LikeType.DISLIKE);
         }
-        likeService.save(r);
-        p.getLikes().add(r);
-        postServiceimpl.save(p);
+        likeService.save(like);
+        post.getLikes().add(like);
+        postServiceimpl.save(post);
         return HttpStatus.CREATED;
     }
 }

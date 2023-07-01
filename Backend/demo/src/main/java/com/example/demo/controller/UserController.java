@@ -90,12 +90,12 @@ public class UserController {
 
     @PostMapping("/SaveDName")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public User userad(Principal user,@RequestBody @Validated SaveDTO dto) {
-        User nesto = this.userService.findByUsername(user.getName());
-        nesto.setDisplayName(dto.getName());
-        nesto.setDescription(dto.getDesc());
-        userService.Save(nesto);
-        return nesto;
+    public User korisnik(Principal user,@RequestBody @Validated SaveDTO dto) {
+        User korisnik1 = this.userService.findByUsername(user.getName());
+        korisnik1.setDisplayName(dto.getName());
+        korisnik1.setDescription(dto.getDesc());
+        userService.Save(korisnik1);
+        return korisnik1;
     }
 
     @GetMapping("/getUser")
@@ -103,18 +103,18 @@ public class UserController {
     public User user(Principal user) {
         return this.userService.findByUsername(user.getName());
     }
-    @PostMapping("/changepass")
+    @PostMapping("/changepassword")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public HttpStatus user(Principal user,@RequestBody  String dto ) throws JsonProcessingException {
-        User nesto = this.userService.findByUsername(user.getName());
+        User korisnik = this.userService.findByUsername(user.getName());
         ObjectMapper mapper = new ObjectMapper();
-        PasswordDTO usera = mapper.readValue(dto, PasswordDTO.class);
+        PasswordDTO pass = mapper.readValue(dto, PasswordDTO.class);
 
-        if(passwordEncoder.matches(usera.getOldPassword(),nesto.getPassword())  )
+        if(passwordEncoder.matches(pass.getOldPassword(),korisnik.getPassword())  )
         {
 
 
-            this.userService.ChangePassword(user.getName(),usera.getNewPassword());
+            this.userService.ChangePassword(user.getName(),pass.getNewPassword());
             return HttpStatus.ACCEPTED;
         }
         else return HttpStatus.NOT_ACCEPTABLE;

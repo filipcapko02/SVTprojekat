@@ -40,21 +40,21 @@ public class GroupServiceImpl {
     }
     public Groupp createGroup(GroupDTO dto, long a) {
 
-        Optional<Groupp> group = groupInterface.findFirstByNameAndDeleted(dto.getName(),false);
+        Optional<Groupp> grupa = groupInterface.findFirstByNameAndDeleted(dto.getName(),false);
 
-        if(group.isPresent()){
+        if(grupa.isPresent()){
             return null;
         }
 
-        Groupp groupa = new Groupp();
-        groupa.setName(dto.getName());
-        groupa.setDate(LocalDateTime.now());
-        groupa.setDescription(dto.getDescription());
-        groupa.setGroupAdmin(a);
-        groupa.setDeleted(false);
-        groupa = groupInterface.save(groupa);
+        Groupp grupa1 = new Groupp();
+        grupa1.setName(dto.getName());
+        grupa1.setDate(LocalDateTime.now());
+        grupa1.setDescription(dto.getDescription());
+        grupa1.setGroupAdmin(a);
+        grupa1.setDeleted(false);
+        grupa1 = groupInterface.save(grupa1);
 
 
-        return groupa;
+        return grupa1;
     }
 }

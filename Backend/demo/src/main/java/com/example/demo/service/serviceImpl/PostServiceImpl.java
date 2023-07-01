@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 
 @Primary
@@ -56,49 +57,51 @@ public class PostServiceImpl {
         List<Post> posts = postInterface.findAllByUserAndDeleted(a,false);
         for ( Post aa: posts
         ) {
-            PostDTO nesto = new PostDTO();
+            PostDTO pera = new PostDTO();
 
             if (userService.findOne(aa.getUser()).getDisplayName() == null || userService.findOne(aa.getUser()).getDisplayName().length() == 0)
-                nesto.setUser(userService.findOne(aa.getUser()).getFirstname());
+                pera.setUser(userService.findOne(aa.getUser()).getFirstname());
             else
-                nesto.setUser(userService.findOne(aa.getUser()).getDisplayName());
-            nesto.setText(aa.getText());
+                pera.setUser(userService.findOne(aa.getUser()).getDisplayName());
+            pera.setText(aa.getText());
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
             String formatDateTime = aa.getDate().format(formatter);
-            nesto.setDat(formatDateTime);
-            nesto.setId(aa.getId());
-            dtos.add(nesto);
+            pera.setDat(formatDateTime);
+            pera.setId(aa.getId());
+            dtos.add(pera);
         }
         return dtos;
     }
-    public List<PostDTO> getAllAll() {
 
-        List<PostDTO> dtos= new ArrayList<PostDTO>();
+
+    public List<PostDTO> getSve() {
+
+        List<PostDTO> pdto= new ArrayList<PostDTO>();
         List<Post> posts = postInterface.findAllByDeleted(false);
         for ( Post aa: posts
         ) {
-            PostDTO nesto = new PostDTO();
+            PostDTO post = new PostDTO();
 
             if (userService.findOne(aa.getUser()).getDisplayName() == null || userService.findOne(aa.getUser()).getDisplayName().length() == 0)
-                nesto.setUser(userService.findOne(aa.getUser()).getFirstname());
+                post.setUser(userService.findOne(aa.getUser()).getFirstname());
             else
-                nesto.setUser(userService.findOne(aa.getUser()).getDisplayName());
-            nesto.setText(aa.getText());
+                post.setUser(userService.findOne(aa.getUser()).getDisplayName());
+            post.setText(aa.getText());
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
             String formatDateTime = aa.getDate().format(formatter);
-            nesto.setDat(formatDateTime);
-            nesto.setId(aa.getId());
+            post.setDat(formatDateTime);
+            post.setId(aa.getId());
             for (Likee b: aa.getLikes())
             {
-                if(b.getType()== LikeType.LIKE) nesto.setLike(nesto.getLike()+1);
-                if(b.getType()== LikeType.DISLIKE) nesto.setDislike(nesto.getDislike()+1);
+                if(b.getType()== LikeType.LIKE) post.setLike(post.getLike()+1);
+                if(b.getType()== LikeType.DISLIKE) post.setDislike(post.getDislike()+1);
 
             }
-            nesto.setComments( aa.getComments());
-            dtos.add(nesto);
+            post.setComments( aa.getComments());
+            pdto.add(post);
         }
-        return dtos;
+        return pdto;
     }
 }

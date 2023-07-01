@@ -49,20 +49,20 @@ public class PostController  {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public Post user(Principal user, @RequestBody @Validated PostDTO dto) {
 
-        User nesto = this.userService.findByUsername(user.getName());
+        User korisnik = this.userService.findByUsername(user.getName());
 
-        Post b = this.postService.createGroup(dto.getText(),nesto.getId());
-        nesto.getPosts().add(b);
-        userService.Save(nesto);
-        return b;
+        Post p = this.postService.createGroup(dto.getText(),korisnik.getId());
+        korisnik.getPosts().add(p);
+        userService.Save(korisnik);
+        return p;
     }
     @DeleteMapping("/delete")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public HttpStatus user1(Principal user, @RequestBody @Validated  Long id) {
-        // Long id = Long.valueOf(idd);
-        User nesto = this.userService.findByUsername(user.getName());
+    public HttpStatus korisnik1(Principal user, @RequestBody @Validated  Long id) {
 
-        if( this.postService.getOne(id).getUser() == nesto.getId())
+        User korisnik = this.userService.findByUsername(user.getName());
+
+        if( this.postService.getOne(id).getUser() == korisnik.getId())
         {
             this.postService.delete(id);
             return HttpStatus.ACCEPTED;
@@ -73,40 +73,40 @@ public class PostController  {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public List<PostDTO> user(Principal user) {
 
-        User pera = this.userService.findByUsername(user.getName());
-        return postService.getAll(pera.getId());
+        User korisnik = this.userService.findByUsername(user.getName());
+        return postService.getAll(korisnik.getId());
 
     }
-    @GetMapping("/AllAll")
+    @GetMapping("/Sve")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public List<PostDTO> use1r(Principal user) {
+    public List<PostDTO> korisnik2(Principal user) {
 
 
-        return postService.getAllAll();
+        return postService.getSve();
 
     }
     @PostMapping("/GroupPost")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public Post useaar(Principal user, @RequestBody @Validated PostGroupDTO dto) {
-        User peraa = this.userService.findByUsername(user.getName());
-        Groupp pera = this.groupService.getOne(Long.valueOf(dto.getGroup()));
+    public Post korisnik3(Principal user, @RequestBody @Validated PostGroupDTO dto) {
+        User kor = this.userService.findByUsername(user.getName());
+        Groupp grupa = this.groupService.getOne(Long.valueOf(dto.getGroup()));
 
-        Post b = this.postService.createGroup(dto.getText(),peraa.getId());
-        pera.getPosts().add(b);
-        groupService.save(pera);
+        Post b = this.postService.createGroup(dto.getText(),kor.getId());
+        grupa.getPosts().add(b);
+        groupService.save(grupa);
         return b;
     }
 
     @PostMapping("/save")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public HttpStatus userf(Principal user, @RequestBody @Validated PostSaveDTO dto ) {
+    public HttpStatus korisnik4(Principal user, @RequestBody @Validated PostSaveDTO dto ) {
 
-        User nesto = this.userService.findByUsername(user.getName());
-        Post nestoo = postService.getOne(dto.getId());
-        if(nestoo.getUser() == nesto.getId())
+        User kor = this.userService.findByUsername(user.getName());
+        Post post = postService.getOne(dto.getId());
+        if(post.getUser() == kor.getId())
         {
-            nestoo.setText(dto.getText());
-            postService.save(nestoo);
+            post.setText(dto.getText());
+            postService.save(post);
             return HttpStatus.ACCEPTED;
         }
         return HttpStatus.NOT_ACCEPTABLE;
@@ -114,11 +114,11 @@ public class PostController  {
 
     @PostMapping("/one")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public Post userf(Principal user, @RequestBody @Validated Long id ) {
+    public Post korisnik6(Principal user, @RequestBody @Validated Long id ) {
 
-        User nesto = this.userService.findByUsername(user.getName());
-        Post nestoo = postService.getOne(id);
-        if( nestoo.getUser() == nesto.getId())
+        User korisnik = this.userService.findByUsername(user.getName());
+        Post post = postService.getOne(id);
+        if( post.getUser() == korisnik.getId())
         {
 
             return this.postService.getOne(id);
