@@ -24,7 +24,8 @@ public class Likee {
   private Long user;
   @Column(nullable = false ,unique = true)
   private Long post;
-
+  @Column(unique = true)
+  private Long comment;
   @Enumerated(EnumType.STRING)
   private LikeType type;
   @Column(nullable = false)

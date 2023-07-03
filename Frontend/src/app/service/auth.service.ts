@@ -5,7 +5,7 @@ import { ApiService } from '../api.service';
 import { ConfigService } from './config.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpHeaders, HttpStatusCode} from '@angular/common/http';
-
+import { JwtModule } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'

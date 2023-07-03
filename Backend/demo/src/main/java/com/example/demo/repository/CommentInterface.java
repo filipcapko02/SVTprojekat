@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface CommentInterface extends JpaRepository<Comment, Long> {
-
+    Comment findFirstById(long id);
 }

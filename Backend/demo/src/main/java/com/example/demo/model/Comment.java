@@ -33,6 +33,6 @@ public class Comment {
   private LocalDate date;
   @Column(nullable = false)
   private Boolean deleted;
-  @OneToMany( fetch = FetchType.LAZY)
+  @OneToMany( fetch = FetchType.EAGER)
   private Set<Likee> Reaction= new HashSet<Likee>();
 }

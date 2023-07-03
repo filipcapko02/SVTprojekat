@@ -18,12 +18,23 @@ import { PostfeedComponent } from './pages/postfeed/postfeed.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import { AuthService } from './service/auth.service';
+import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
+import { TokenInterceptor } from './tools/interceptor/TokenInterceptor';
+import { UserService } from './service/user.service';
+import { PostService } from './service/post.service';
+import { GroupService } from './service/group.service';
+import { CommentService } from './service/comment.service';
+import { ConfigService } from './service/config.service';
+import {FirebaseTSApp} from 'firebasets/firebasetsApp/firebaseTSApp';
+import { environment } from './environments/environment';
+import {MatButtonModule} from '@angular/material/button';
+import { AuthenticatorComponent } from './tools/authenticator/authenticator.component'
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+
 
 const appRoute: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'Home', component: HomeComponent },
-  { path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({
@@ -37,7 +48,8 @@ const appRoute: Routes = [
     EditProfileComponent,
     ChangepasswordComponent,
     PostfeedComponent,
-    HomeComponent
+    HomeComponent,
+    AuthenticatorComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +60,21 @@ const appRoute: Routes = [
     MatIconModule,
     MatCardModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatBottomSheetModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  },AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,GroupService,PostService,ConfigService,UserService,CommentService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(){
+    FirebaseTSApp.init(environment.firebaseConfig);
+  }
+ }

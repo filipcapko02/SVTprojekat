@@ -36,8 +36,6 @@ public class User {
   @Column(nullable = false, unique = true)
   private String email;
   @Column(nullable = false)
-  private LocalDateTime LastLogin;
-  @Column(nullable = false)
   private String firstname;
   @Column(nullable = false)
   private String lastname;
@@ -46,4 +44,19 @@ public class User {
   private Roles role;
   @OneToMany( fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
   private Set<Post> posts = new HashSet<Post>();
+
+
+
+  public Roles getRole() {
+    return this.role;
+  }
+
+  public String getUsername() {
+    return this.username;
+  }
+
+  public String getPassword() {
+    return this.password;
+  }
+
 }

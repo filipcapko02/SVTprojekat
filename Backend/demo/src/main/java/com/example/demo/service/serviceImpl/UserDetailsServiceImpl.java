@@ -33,6 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(user == null){
             throw new UsernameNotFoundException("There is no user with username " + username);
         }else{
+
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
             String role = "ROLE_" + user.getRole().toString();
             grantedAuthorities.add(new SimpleGrantedAuthority(role));

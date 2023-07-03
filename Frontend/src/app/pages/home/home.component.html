@@ -1,37 +1,8 @@
-<!-- HTML -->
-<div class="container">
-    <div class="header">
-      <a class="logout-link" (click)="LogOut()">Logout</a>
+<div class="home">
+  <div class="homee">
+    <div class="levo">
+      <button (click)="onLoginClick()" mat-flat-button color="primary">Login</button>
     </div>
-    <div class="menu">
-      <a class="menu-item" href="http://localhost:4200/CreateGroup">Create Group</a>
-      <a class="menu-item" href="http://localhost:4200/MyProfile">My Profile</a>
-    </div>
-    <div class="post-form">
-      <form [formGroup]="forma" (ngSubmit)="submitForm()">
-        <div class="form-group">
-          <select name="group" id="group" formControlName="sGroup">
-            <option [ngValue]="null" disabled>Select Where to post</option>
-            <option [ngValue]="0">My Profile</option>
-            <option *ngFor="let country of groups" [ngValue]="country.id">{{ country.name }}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="post">Post Text:</label>
-          <input type="text" id="post" formControlName="post" required>
-        </div>
-        <div class="form-group">
-          <button type="submit">Post</button>
-        </div>
-      </form>
-    </div>
-    <div class="my-posts">
-      <h4>My Posts</h4>
-      <app-posts [posts]="posta"></app-posts>
-    </div>
-    <div class="feed">
-      <h3>Feed</h3>
-      <app-posts-all [posts]="postaa"></app-posts-all>
-    </div>
+    
   </div>
-  
+</div>

@@ -15,9 +15,15 @@ public class CommentService {
     @Autowired
     private CommentInterface commentInterface;
 
-    public Optional<Comment> GetOneById(Long id) {
+    public Comment GetOne(Long id) {
 
-        return  this.commentInterface.findById(id);
+        return   this.commentInterface.findFirstById(id);
+
+
+    }
+    public Comment GetAllByComment(Long id) {
+
+        return   this.commentInterface.findFirstById(id);
 
 
     }
