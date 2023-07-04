@@ -1,0 +1,71 @@
+.login__header__right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8a4dff; /* Ljubičasta boja - možete promeniti prema potrebi */
+    padding: 20px;
+  }
+  
+  .login__header__right__card {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login__header__right__card__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .login-form {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  input[name="email"],
+  input[name="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-button {
+    background-color: #8a4dff; /* Ljubičasta boja - možete promeniti prema potrebi */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  a {
+    color: #8a4dff; /* Ljubičasta boja - možete promeniti prema potrebi */
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  
+  hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+  }
+  
+  .create-account {
+    background-color: transparent;
+    color: #8a4dff; /* Ljubičasta boja - možete promeniti prema potrebi */
+    border: none;
+    cursor: pointer;
+  }
+  
+  .tagline {
+    text-align: center;
+    color: #8a4dff; /* Ljubičasta boja - možete promeniti prema potrebi */
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
